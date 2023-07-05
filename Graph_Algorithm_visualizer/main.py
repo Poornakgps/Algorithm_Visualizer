@@ -6,80 +6,87 @@ from DFS import DFSAlgorithm
 from Custom import CustomAlgorithm
 from BFS import BFSAlgorithm
 
-print("May i Know which type of Graph you are trying to build? ")
 
-print("Press 1 for undirected Graph || Press 2 for Directed Graph || Press 3 for MultiGraph(Undirected) || Press 4 for MultiGraph(Directed)")
+print("Please select the type of graph:")
+print("1. Undirected Graph")
+print("2. Directed Graph")
+graph_type = int(input("Enter your choice (1 or 2): "))
 
-Graph_type= int(input())
-
-# Creating Graph
-if Graph_type==1:
+# Creating the graph
+if graph_type == 1:
     graph = nx.Graph()
-elif Graph_type==2:
+elif graph_type == 2:
     graph = nx.DiGraph()
-elif Graph_type==3:
-    graph = nx.MultiGraph()
-else:
-    graph=nx.MultiDiGraph()
-    
 
-n= int(input("No.of Nodes: "))
-for i in range(0,n+1):
+# Enter the number of nodes and edges
+n = int(input("Enter the number of nodes: "))
+m = int(input("Enter the number of edges: "))
+
+# Check if the graph is weighted
+weighted = int(input("Is it a weighted graph? Enter 1 for yes, 0 for no: "))
+
+
+# Adding nodes to the graph by default from 1 to n
+for i in range(1, n + 1):
     graph.add_node(i)
 
-m=int(input("No.of Edges: "))
 
-weighted= int(input("Is is weighted Graph? Enter: 1 or 0 "))
+print("Enter the edges:")
+for i in range(m):
+    print("Edge", i + 1)
+    u = int(input("Enter the source node: "))
+    v = int(input("Enter the destination node: "))
 
-print("Enter Edges: ")
-for i in range(0,m):
-    print("Enter Nodes: ")
-    u=int(input("u = "))
-    v=int(input("v = "))
-    
     if weighted:
-        w=int(input("Enter Weight: "))
+        w = int(input("Enter the weight: "))
     else:
-        w=1    #Default
-    graph.add_edge(u,v,weight=w)
+        w = 1  # Default weight is 1 for unweighted graphs
 
+    graph.add_edge(u, v, weight=w)
 
-print("Enter which Algorithm which u want to Visualize on your test Case?")
-print("1 Shortest Path between Source and Destination(Dijkstra) || 2) Minimum Spanning Tree(Kruskal) || 3) Custom  ")
-choice= int(input())
+# select the algorithm to visualize on the graph
+print("Enter the algorithm you want to visualize on your test case:")
+print("1. DFS Traversal")
+print("2. BFS Traversal")
+print("3. Shortest Path between Source and Destination (Dijkstra's Algorithm)")
+print("4. Minimum Spanning Tree (Kruskal's Algorithm)")
+print("5. Custom Algorithm")
 
-if choice == 1:    #Shortest Path
-    # Choose the source and destination nodes
-    source = int(input("Source: "))
-    destination = int(input("Destination: "))
-    
+choice = int(input("Enter your choice (1-5): "))
 
-    algorithm= Dijkstra()    # for shortest path
+if choice == 1:
+    # DFS Traversal
+    algorithm = DFSAlgorithm()
     visualizer = GraphVisualizer(graph)
-    visualizer.visualize(algorithm, source, destination)
+    visualizer.visualize(algorithm)
 
-    
-elif choice == 2: # Minimum Spanning Tree
-    algorithm=MSTAlgorithm()
+elif choice == 2:
+    # BFS Traversal
+    algorithm = BFSAlgorithm()
     visualizer = GraphVisualizer(graph)
     visualizer.visualize(algorithm)
 
 elif choice == 3:
-    algorithm= DFSAlgorithm()
-    visualizer= GraphVisualizer(graph)
-    visualizer.visualize(algorithm)
+    # Shortest Path
+    source = int(input("Enter the source node: "))
+    destination = int(input("Enter the destination node: "))
+
+    algorithm = Dijkstra()  # Dijkstra's Algorithm for finding shortest paths
+    visualizer = GraphVisualizer(graph)
+    visualizer.visualize(algorithm, source, destination)
 
 elif choice == 4:
-    algorithm= BFSAlgorithm()
-    visualizer= GraphVisualizer(graph)
+    # Minimum Spanning Tree
+    algorithm = MSTAlgorithm()
+    visualizer = GraphVisualizer(graph)
     visualizer.visualize(algorithm)
-    
+
 else:
-    extra= int(input("Are there any extra inputs? 1 or 0 "))
-    algorithm = CustomAlgorithm(extra,n)
-    visualizer= GraphVisualizer(graph)
+    # Custom Algorithm
+    extra = int(input("Are there any extra inputs? Enter 1 for yes, 0 for no: "))
+    algorithm = CustomAlgorithm(extra, n)
+    visualizer = GraphVisualizer(graph)
     visualizer.visualize(algorithm)
-    
     
 
 
