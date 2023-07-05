@@ -1,10 +1,10 @@
 import networkx as nx
-from Graph_Algorithm_visualizer.shortest_path import Dijkstra
-from Graph_Algorithm_visualizer.Graph_visualizer import GraphVisualizer
-from Graph_Algorithm_visualizer.Minimum_Spanning_Tree import MSTAlgorithm
-from Graph_Algorithm_visualizer.DFS import DFSAlgorithm
-from Graph_Algorithm_visualizer.Custom import CustomAlgorithm
-from Graph_Algorithm_visualizer.BFS import BFSAlgorithm
+from shortest_path import Dijkstra
+from Graph_visualizer import GraphVisualizer
+from Minimum_Spanning_Tree import MSTAlgorithm
+from DFS import DFSAlgorithm
+from Custom import CustomAlgorithm
+from BFS import BFSAlgorithm
 
 print("May i Know which type of Graph you are trying to build? ")
 
@@ -45,7 +45,7 @@ for i in range(0,m):
 
 
 print("Enter which Algorithm which u want to Visualize on your test Case?")
-print("1 Shortest Path between Source and Destination(Dijkstra) || 2) Minimum Spanning Tree(Kruskal) || 3) Custom ")
+print("1 Shortest Path between Source and Destination(Dijkstra) || 2) Minimum Spanning Tree(Kruskal) || 3) Custom  ")
 choice= int(input())
 
 if choice == 1:    #Shortest Path
@@ -56,14 +56,22 @@ if choice == 1:    #Shortest Path
 
     algorithm= Dijkstra()    # for shortest path
     visualizer = GraphVisualizer(graph)
-
-    # source_node = 1
     visualizer.visualize(algorithm, source, destination)
 
     
 elif choice == 2: # Minimum Spanning Tree
     algorithm=MSTAlgorithm()
     visualizer = GraphVisualizer(graph)
+    visualizer.visualize(algorithm)
+
+elif choice == 3:
+    algorithm= DFSAlgorithm()
+    visualizer= GraphVisualizer(graph)
+    visualizer.visualize(algorithm)
+
+elif choice == 4:
+    algorithm= BFSAlgorithm()
+    visualizer= GraphVisualizer(graph)
     visualizer.visualize(algorithm)
     
 else:

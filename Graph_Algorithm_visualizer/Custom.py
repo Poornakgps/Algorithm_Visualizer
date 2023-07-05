@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-from Graph_Algorithm_visualizer.Graph_visualizer import GraphVisualizer
+from Graph_visualizer import GraphVisualizer
 from collections import deque
 
 class CustomAlgorithm:
@@ -29,9 +29,6 @@ class CustomAlgorithm:
         print(self.cnt) # Time complexity
         
         
-
-
-                
     def _bfs(self,G,s, pos, ax):
         # self._visualize_graph(G, pos, ax, "Custom Algorithm")
         inf=10**30

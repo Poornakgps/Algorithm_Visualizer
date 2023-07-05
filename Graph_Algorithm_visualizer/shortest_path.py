@@ -11,7 +11,6 @@ class Dijkstra:
 
     def execute(self, graph,pos,ax, source, destination):
 
-
         self._dijkstra(graph, source, destination,pos, ax)
 
         if destination not in self.distances:
@@ -41,7 +40,7 @@ class Dijkstra:
 
             if current_node not in self.visited:
                 self.visited.add(current_node)
-
+                
                 for neighbor, weight_dict in graph[current_node].items():
                     weight = weight_dict['weight']
                     new_distance = self.distances[current_node] + weight

@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-from Graph_Algorithm_visualizer.Graph_visualizer import GraphVisualizer
+from Graph_visualizer import GraphVisualizer
 from collections import deque
 
 class BFSAlgorithm:
